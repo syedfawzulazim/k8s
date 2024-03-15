@@ -7,8 +7,7 @@ spec:
   # this defines which pods will be apart of this service
   # this service becomes a network endpoit for either other seesvices or external clients like a browser 
   selector:
-    myLebelName: webapp
-    realease: "0-5"
+    app: webapp
   
   ports:
   - name: http
