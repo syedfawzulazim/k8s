@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-webapp
+
+spec:
+  # this defines which pods will be apart of this service
+  # this service becomes a network endpoit for either other seesvices or external clients like a browser 
+  selector:
+    myLebelName: webapp
+    realease: "0-5"
+  
+  ports:
+  - name: http
+    port: 80
+    nodePort: 30080 # this is the port that the service will be accessible from outside the cluster (only when type is set to NodePort, and nodePort is set tp a value more than 30000)
+  
+  # when type is set to clusterIP it is only accessible from within the cluster
+  # when type is set to NodePort it is accessible from outside the cluster like a browser
+  type: NodePort
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-queue
+
+spec:
+  # this defines which pods will be apart of this service
+  # this service becomes a network endpoit for either other seesvices or external clients like a browser 
+  selector:
+    app: queue
+  
+  ports:
+  - name: http
+    port: 8161
+    nodePort: 30010 # this is the port that the service will be accessible from outside the cluster (only when type is set to NodePort, and nodePort is set tp a value more than 30000)
+  
+  # when type is set to clusterIP it is only accessible from within the cluster
+  # when type is set to NodePort it is accessible from outside the cluster like a browser
+  type: NodePort
