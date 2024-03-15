@@ -35,7 +35,7 @@ spec:
   selector:
     matchLabels:
       app: webapp
-  template:
+  template: #template is a pod template that defines the pods that will be created by the replica set
     metadata:
       labels:
         app: webapp
